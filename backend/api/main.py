@@ -14,8 +14,9 @@ load_dotenv(dotenv_path=os.path.join(os.path.dirname(__file__), "..", ".env"))
 from temporalio.client import Client  # noqa: E402 (after env load)
 
 from backend.workflows.skeleton import SkeletonWorkflow  # noqa: E402
+from backend.api.boards import router as boards_router  # noqa: E402
 
-app = FastAPI(title="Meridian Skeleton API")
+app = FastAPI(title="Meridian API")
 
 app.add_middleware(
     CORSMiddleware,
@@ -23,6 +24,9 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+
+app.include_router(boards_router)
 
 
 @app.get("/api/v1/health")

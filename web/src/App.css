@@ -2,6 +2,7 @@
 
 body { background: #030712; }
 
+/* ── Skeleton page shell ───────────────────────────────────────────────── */
 .shell {
   min-height: 100vh;
   display: flex;
@@ -10,6 +11,7 @@ body { background: #030712; }
   padding: 80px 24px 60px;
   color: #f9fafb;
   font-family: system-ui, sans-serif;
+  position: relative;
 }
 
 .eyebrow {
@@ -61,4 +63,22 @@ h1 {
   gap: 16px;
   flex-wrap: wrap;
   justify-content: center;
+}
+
+/* ── React Flow overrides ───────────────────────────────────────────────── */
+.react-flow__node {
+  border-radius: 8px;
+}
+
+.react-flow__controls-button {
+  background: #111827 !important;
+  border-color: #374151 !important;
+  color: #9ca3af !important;
+  fill: #9ca3af !important;
+}
+
+.react-flow__controls-button:hover {
+  background: #1f2937 !important;
+  color: #f9fafb !important;
+  fill: #f9fafb !important;
 }

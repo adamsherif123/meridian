@@ -9,25 +9,14 @@ def _check_composio() -> dict:
     if not api_key:
         return {"status": "not_configured", "detail": "COMPOSIO_API_KEY not set"}
     try:
-        # Lazy import: keeps this module loadable even before `pip install composio`
         from composio import Composio  # type: ignore
-
         client = Composio(api_key=api_key)
-        # Try v2 session-based API first, fall back to direct apps listing
-        try:
-            session = client.create(user_id="meridian-skeleton")
-            tools = session.tools()
-            count = len(tools) if hasattr(tools, "__len__") else "?"
-            return {"status": "ok", "detail": f"SDK connected; {count} tools available"}
-        except AttributeError:
-            apps = client.apps.get()
-            count = len(apps) if hasattr(apps, "__len__") else "?"
-            return {"status": "ok", "detail": f"SDK connected; {count} apps available"}
+        # Documented 0.16.0 call — fetches tool schemas, which validates the key.
+        tools = client.tools.get(user_id="default", toolkits=["gmail"])
+        count = len(tools) if hasattr(tools, "__len__") else "?"
+        return {"status": "ok", "detail": f"SDK authenticated; {count} Gmail tools available"}
     except ImportError:
-        return {
-            "status": "error",
-            "detail": "composio package not installed — run: pip install composio",
-        }
+        return {"status": "error", "detail": "composio package not installed"}
     except Exception as exc:
         return {"status": "error", "detail": str(exc)}
 

@@ -2,6 +2,7 @@
 
 import asyncio
 import os
+from concurrent.futures import ThreadPoolExecutor
 
 from dotenv import load_dotenv
 from temporalio.client import Client
@@ -21,6 +22,7 @@ async def main() -> None:
         task_queue="meridian-skeleton",
         workflows=[SkeletonWorkflow],
         activities=[run_skeleton_checks],
+        activity_executor=ThreadPoolExecutor(max_workers=10),
     )
     print(f"Worker started — task queue: meridian-skeleton  server: {address}")
     await worker.run()
