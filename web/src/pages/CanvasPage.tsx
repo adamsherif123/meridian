@@ -59,6 +59,9 @@ export default function CanvasPage() {
     changeEdgeKind(id: string, kind: EdgeKind) {
       setEdges(eds => eds.map(e => e.id === id ? { ...e, data: { ...e.data, edgeKind: kind } } : e))
     },
+    changeEdgeLabel(id: string, label: string) {
+      setEdges(eds => eds.map(e => e.id === id ? { ...e, data: { ...e.data, label } } : e))
+    },
   }), [setNodes, setEdges])
 
   // ── Load boards on mount ─────────────────────────────────────────────────
@@ -330,19 +333,61 @@ export default function CanvasPage() {
               </button>
             ))}
 
+            {/* Escape-hatch divider */}
+            <div style={{ borderTop: '1px solid #1f2937', margin: '8px 4px 6px' }} />
+            <button
+              onClick={() => addNode('custom')}
+              style={{
+                width: '100%',
+                display: 'flex',
+                alignItems: 'center',
+                gap: 8,
+                padding: '7px 10px',
+                marginBottom: 3,
+                background: 'none',
+                border: '1px solid transparent',
+                borderRadius: 6,
+                color: '#6b7280',
+                fontSize: 12,
+                fontWeight: 500,
+                cursor: 'pointer',
+                textAlign: 'left',
+                transition: 'background 0.1s, border-color 0.1s, color 0.1s',
+              }}
+              onMouseEnter={e => {
+                e.currentTarget.style.background = '#111827'
+                e.currentTarget.style.borderColor = '#374151'
+                e.currentTarget.style.color = '#9ca3af'
+              }}
+              onMouseLeave={e => {
+                e.currentTarget.style.background = 'none'
+                e.currentTarget.style.borderColor = 'transparent'
+                e.currentTarget.style.color = '#6b7280'
+              }}
+            >
+              <span style={{ fontSize: 15, width: 20, textAlign: 'center', flexShrink: 0 }}>
+                {NODE_ICONS['custom']}
+              </span>
+              {NODE_LABELS['custom']}
+            </button>
+
             {/* Edge legend */}
             <div style={{ marginTop: 20, padding: '0 8px' }}>
               <div style={{ fontSize: 10, color: '#4b5563', textTransform: 'uppercase', letterSpacing: '0.1em', fontWeight: 700, marginBottom: 8 }}>
                 Edge types
               </div>
               {([
-                ['default',   '#6b7280', '→ default'],
-                ['on_pass',   '#22c55e', '✓ on_pass'],
-                ['on_fail',   '#ef4444', '✗ on_fail'],
-                ['exception', '#f59e0b', '⚠ exception'],
-              ] as const).map(([, color, label]) => (
+                ['default',   '#6b7280', '→ default',   false],
+                ['on_pass',   '#22c55e', '✓ on_pass',   false],
+                ['on_fail',   '#ef4444', '✗ on_fail',   false],
+                ['exception', '#f59e0b', '⚠ exception', false],
+                ['custom',    '#9ca3af', '✦ custom',    true],
+              ] as const).map(([, color, label, dashed]) => (
                 <div key={label} style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 5, fontSize: 11 }}>
-                  <div style={{ width: 24, height: 2, background: color, borderRadius: 1, flexShrink: 0 }} />
+                  <div style={{
+                    width: 24, height: 0, flexShrink: 0,
+                    borderTop: dashed ? `2px dashed ${color}` : `2px solid ${color}`,
+                  }} />
                   <span style={{ color: '#9ca3af' }}>{label}</span>
                 </div>
               ))}

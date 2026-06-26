@@ -7,8 +7,9 @@ export type NodeKind =
   | 'aggregate'
   | 'tool_action'
   | 'report'
+  | 'custom'
 
-export type EdgeKind = 'default' | 'on_pass' | 'on_fail' | 'exception'
+export type EdgeKind = 'default' | 'on_pass' | 'on_fail' | 'exception' | 'custom'
 
 export interface NodeData extends Record<string, unknown> {
   kind: NodeKind
@@ -18,6 +19,7 @@ export interface NodeData extends Record<string, unknown> {
 
 export interface EdgeData extends Record<string, unknown> {
   edgeKind: EdgeKind
+  label?: string  // user-supplied free text; only shown when edgeKind === 'custom'
 }
 
 export interface Board {
@@ -27,6 +29,7 @@ export interface Board {
   updated_at?: string
 }
 
+// The 8 typed primitives — custom is handled separately in the palette.
 export const NODE_KINDS: NodeKind[] = [
   'trigger',
   'expected_document',
@@ -47,6 +50,7 @@ export const NODE_LABELS: Record<NodeKind, string> = {
   aggregate: 'Aggregate / Summarize',
   tool_action: 'Tool Action',
   report: 'Report',
+  custom: 'Custom',
 }
 
 export const NODE_ICONS: Record<NodeKind, string> = {
@@ -58,6 +62,7 @@ export const NODE_ICONS: Record<NodeKind, string> = {
   aggregate: 'Σ',
   tool_action: '⚙',
   report: '📊',
+  custom: '✦',
 }
 
 export const NODE_COLORS: Record<NodeKind, { bg: string; accent: string }> = {
@@ -69,6 +74,8 @@ export const NODE_COLORS: Record<NodeKind, { bg: string; accent: string }> = {
   aggregate:         { bg: '#0e1c2c', accent: '#38bdf8' },
   tool_action:       { bg: '#1e1c08', accent: '#facc15' },
   report:            { bg: '#200e0e', accent: '#f87171' },
+  // Intentionally neutral — signals "not a typed primitive"
+  custom:            { bg: '#131318', accent: '#9ca3af' },
 }
 
 export const EDGE_COLORS: Record<EdgeKind, string> = {
@@ -76,4 +83,6 @@ export const EDGE_COLORS: Record<EdgeKind, string> = {
   on_pass:   '#22c55e',
   on_fail:   '#ef4444',
   exception: '#f59e0b',
+  // Intentionally neutral / lighter gray to read as "escape hatch"
+  custom:    '#9ca3af',
 }
