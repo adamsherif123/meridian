@@ -1,0 +1,24 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.venv/
+*.egg-info/
+dist/
+build/
+
+# Secrets
+.env
+*.env.local
+
+# Node / Vite
+node_modules/
+web/dist/
+web/.env.local
+
+# macOS
+.DS_Store
+
+# IDE
+.vscode/
+.idea/
