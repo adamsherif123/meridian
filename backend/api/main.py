@@ -15,6 +15,14 @@ from temporalio.client import Client  # noqa: E402 (after env load)
 
 from backend.workflows.skeleton import SkeletonWorkflow  # noqa: E402
 from backend.api.boards import router as boards_router  # noqa: E402
+from backend.api.files import router as files_router  # noqa: E402
+from backend.api.gate import router as gate_router  # noqa: E402
+from backend.codegen.generate import router as codegen_router  # noqa: E402
+from backend.evals.evaluate import router as evals_router  # noqa: E402
+from backend.selfheal.heal import router as heal_router  # noqa: E402
+from backend.api.run_live import router as run_live_router  # noqa: E402
+from backend.api.worked_example import router as worked_example_router  # noqa: E402
+from backend.api.build_agent import router as build_agent_router  # noqa: E402
 
 app = FastAPI(title="Meridian API")
 
@@ -27,6 +35,14 @@ app.add_middleware(
 
 
 app.include_router(boards_router)
+app.include_router(files_router)
+app.include_router(gate_router)
+app.include_router(codegen_router)
+app.include_router(evals_router)
+app.include_router(heal_router)
+app.include_router(run_live_router)
+app.include_router(worked_example_router)
+app.include_router(build_agent_router)
 
 
 @app.get("/api/v1/health")

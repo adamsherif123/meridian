@@ -1,1 +1,1 @@
-Evaluation harnesses for AI output quality (prompt regression tests, rubric scoring). Empty during the walking-skeleton phase.
+Evaluation harnesses for agent output quality. `runner.py` drives eval cases; `evaluate.py` scores results; `cases/` holds per-board fixture inputs and expected outputs (boards 7, 9, 10). Seed scripts (`seed_board*.py`) populate the Supabase `boards` and `frozen_specs` tables for each eval board.

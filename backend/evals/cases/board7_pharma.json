@@ -1,0 +1,44 @@
+{
+  "_instructions": [
+    "Answer key locked to verified ground truth from live run on 2026-06-28.",
+    "Derivation: 3 invoices (U06-335/336/353.pdf) from the email's ASN table;",
+    "8 batches (ULXDA26001A/02A/03A via U06-335, ULXDA26010A/11A/12A via U06-336,",
+    "ULXDG26004A/07A via U06-353); 8 COA attachments all matched (batches_succeeded=8).",
+    "Keys starting with '_' are comments — do not rename or remove them.",
+    "Re-run: python -m backend.evals.evaluate a8d28f1d-6a23-4fc7-81cd-fc44dbe97795"
+  ],
+
+  "board_id": "a8d28f1d-6a23-4fc7-81cd-fc44dbe97795",
+  "name": "Pharma pre-alert — SZLU9365018 / MAWB 176-63154280",
+
+  "_fixture_subject_note": "Agent sets shipment_number = email subject. Equals the MAWB ref.",
+  "fixture_subject": "176-63154280",
+
+  "_email_filename_hint_note": "Substring match on sample_files filename to find the email body row.",
+  "email_filename_hint": "sample_email",
+
+  "expected": {
+
+    "_derivation": {
+      "shipment_number":    "MAWB from email subject: 176-63154280",
+      "invoices_processed": "3 invoice PDFs in email: U06-335.pdf, U06-336.pdf, U06-353.pdf",
+      "invoices_succeeded": "All 3 invoices contain all 5 regulatory codes (HTS, ANDA, FDA, Reg.No, NDC) — verified by live run DEBUG [5] logs showing overall_passed=True for each",
+      "invoices_failed":    "invoices_processed - invoices_succeeded = 3 - 3 = 0",
+      "goods_failed":       "0 — all 5 required field codes found on all line items across all 3 invoices",
+      "batches_processed":  "8 unique batch numbers across all invoices (3 from U06-335, 3 from U06-336, 2 from U06-353)",
+      "batches_succeeded":  "8 — all 8 COA files present (ULXDA2600{1,2,3}A, ULXDA2601{0,1,2}A, ULXDG2600{4,7}A COA.pdf) and matched",
+      "batches_failed":     "batches_processed - batches_succeeded = 8 - 8 = 0"
+    },
+
+    "shipment_number":    "176-63154280",
+    "invoices_processed": 3,
+    "invoices_succeeded": 3,
+    "invoices_failed":    0,
+    "goods_failed":       0,
+    "batches_processed":  8,
+    "batches_succeeded":  8,
+    "batches_failed":     0
+  },
+
+  "tolerances": {}
+}

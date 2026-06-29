@@ -1,0 +1,24 @@
+{
+  "_instructions": [
+    "Auto-generated eval case from worked-example upload for board 81248e87-eaf8-4b2c-8ce3-fb1f6076aead.",
+    "Expected values were parsed from the uploaded expected_output file.",
+    "needs_confirmation=False — set to false once you verify the values.",
+    "Re-run: python -m backend.evals.evaluate 81248e87-eaf8-4b2c-8ce3-fb1f6076aead"
+  ],
+  "board_id": "81248e87-eaf8-4b2c-8ce3-fb1f6076aead",
+  "name": "Worked example — board 81248e87",
+  "fixture_subject": "",
+  "email_filename_hint": "sample_email",
+  "needs_confirmation": false,
+  "expected": {
+    "shipment_number": "176-63154280",
+    "invoices_processed": 3,
+    "invoices_succeeded": 3,
+    "invoices_failed": 0,
+    "goods_failed": 0,
+    "batches_processed": 8,
+    "batches_succeeded": 8,
+    "batches_failed": 0
+  },
+  "tolerances": {}
+}

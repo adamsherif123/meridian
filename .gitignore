@@ -22,3 +22,11 @@ web/.env.local
 # IDE
 .vscode/
 .idea/
+
+# Agent self-heal backups (generated at runtime — never commit)
+*.bak
+*.bak*.py
+*.py.bak
+
+# Log files
+*.log

@@ -1,1 +1,1 @@
-Composio tool wrappers and custom tool definitions used by agents. Empty during the walking-skeleton phase.
+All Composio and LLM tool calls are implemented as Temporal activities in `backend/runtime/activities/` (see `fetch_email.py`, `classify_documents.py`, `match_documents.py`, `validate_fields.py`, `report.py`, etc.).

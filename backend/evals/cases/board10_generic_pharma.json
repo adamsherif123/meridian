@@ -1,0 +1,43 @@
+{
+  "_instructions": [
+    "Regression guard for the GENERIC pharma board (Board 10).",
+    "Same Aurobindo air shipment as Boards 7 and 9 — reuses live-runs/19f0ca0cfd34972d/ fixtures.",
+    "Derivation: 3 invoices (U06-335/336/353.pdf); 8 batches; 8 COAs all matched.",
+    "Keys starting with '_' are comments — do not rename or remove them.",
+    "Re-run: python -m backend.evals.evaluate 1d44ee9c-a956-41fe-bc9e-6a05b20196d5"
+  ],
+
+  "board_id": "1d44ee9c-a956-41fe-bc9e-6a05b20196d5",
+  "name": "Pharma pre-alert Board 10 (generic) — MAWB 176-63154280",
+
+  "_fixture_subject_note": "Agent sets shipment_number = email subject (MAWB ref).",
+  "fixture_subject": "176-63154280",
+
+  "_email_filename_hint_note": "Substring match on sample_files filename to find the email body row.",
+  "email_filename_hint": "sample_email",
+
+  "expected": {
+
+    "_derivation": {
+      "shipment_number":    "MAWB from email subject: 176-63154280",
+      "invoices_processed": "3 invoice PDFs: U06-335.pdf, U06-336.pdf, U06-353.pdf",
+      "invoices_succeeded": "All 3 invoices pass 5-field regulatory validation",
+      "invoices_failed":    "0",
+      "goods_failed":       "0 — all required field codes found on all line items",
+      "batches_processed":  "8 unique batches across all invoices",
+      "batches_succeeded":  "8 — all 8 COAs matched via Alias Batch No.",
+      "batches_failed":     "0"
+    },
+
+    "shipment_number":    "176-63154280",
+    "invoices_processed": 3,
+    "invoices_succeeded": 3,
+    "invoices_failed":    0,
+    "goods_failed":       0,
+    "batches_processed":  8,
+    "batches_succeeded":  8,
+    "batches_failed":     0
+  },
+
+  "tolerances": {}
+}
