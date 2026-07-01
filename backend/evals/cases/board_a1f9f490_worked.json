@@ -1,0 +1,24 @@
+{
+  "_instructions": [
+    "Auto-generated eval case from worked-example upload for board a1f9f490-b5cb-4df1-a356-20c06e9e9953.",
+    "Expected values were parsed from the uploaded expected_output file.",
+    "needs_confirmation=True — set to false once you verify the values.",
+    "Re-run: python -m backend.evals.evaluate a1f9f490-b5cb-4df1-a356-20c06e9e9953"
+  ],
+  "board_id": "a1f9f490-b5cb-4df1-a356-20c06e9e9953",
+  "name": "Worked example — board a1f9f490",
+  "fixture_subject": "",
+  "email_filename_hint": "sample_email",
+  "needs_confirmation": true,
+  "expected": {
+    "shipment_number": null,
+    "invoices_processed": null,
+    "invoices_succeeded": null,
+    "invoices_failed": null,
+    "goods_failed": null,
+    "batches_processed": null,
+    "batches_succeeded": null,
+    "batches_failed": null
+  },
+  "tolerances": {}
+}

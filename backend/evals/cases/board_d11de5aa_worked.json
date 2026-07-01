@@ -1,0 +1,32 @@
+{
+  "_instructions": [
+    "Auto-generated eval case for board d11de5aa-6777-4f4b-840b-084fd6f3702d.",
+    "Output schema derived from: file_headers.",
+    "Expected values were parsed from the uploaded expected_output file.",
+    "needs_confirmation=False — set to false once you verify.",
+    "Re-run: python -m backend.evals.evaluate d11de5aa-6777-4f4b-840b-084fd6f3702d"
+  ],
+  "board_id": "d11de5aa-6777-4f4b-840b-084fd6f3702d",
+  "name": "Worked example — board d11de5aa",
+  "fixture_subject": "",
+  "email_filename_hint": "sample_email",
+  "needs_confirmation": false,
+  "output_schema": [
+    "invoice number",
+    "date",
+    "address",
+    "price",
+    "currency",
+    "supplier name"
+  ],
+  "schema_source": "file_headers",
+  "expected": {
+    "invoice number": "INV-2026-0087",
+    "date": "June 5 2026",
+    "address": "55 Innovation Park, Manchester M1 7ED",
+    "price": 868.8,
+    "currency": "GBP",
+    "supplier name": "TechPro Solutions Ltd"
+  },
+  "tolerances": {}
+}
